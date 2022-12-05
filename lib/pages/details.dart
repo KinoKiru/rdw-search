@@ -19,6 +19,8 @@ class _Details extends State<Details> {
   @override
   Widget build(BuildContext context) {
     RemoteService service = RemoteService();
+    final sizeX = MediaQuery.of(context).size.width;
+    final sizeY = MediaQuery.of(context).size.height;
     return FutureBuilder(
       future:
           service.getImage('${widget.car.merk} ${widget.car.model} vehicle'),
@@ -29,30 +31,38 @@ class _Details extends State<Details> {
               appBar: AppBar(
                 title: Text(widget.car.model!),
               ),
-              body: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Center(
-                    child: Image.network(snapshot.data!.photos[0].src.medium),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Merk: ${widget.car.merk}"),
-                      Text("Model: ${widget.car.model}"),
-                      Text('Kenteken: ${widget.car.kenteken}'),
-                      Text("Eerste kleur: ${widget.car.eersteKleur}"),
-                      Text("Tweede kleur: ${widget.car.tweedeKleur}"),
-                      if (widget.car.vervaldatumApkDt != null)
-                        Text(
-                            "Verval APK: ${Jiffy(widget.car.vervaldatumApkDt).format("d MMMM y")}"),
-                      Text("Soort: ${widget.car.voertuigSoort}"),
-                    ],
-                  )
-                ],
+              body: SizedBox(
+                height: sizeY,
+                width: sizeX,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Image.network(
+                        snapshot.data!.photos[0].src.medium,
+                        height: sizeY / 3,
+                        width: sizeX,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Merk: ${widget.car.merk}"),
+                        Text("Model: ${widget.car.model}"),
+                        Text('Kenteken: ${widget.car.kenteken}'),
+                        Text("Eerste kleur: ${widget.car.eersteKleur}"),
+                        Text("Tweede kleur: ${widget.car.tweedeKleur}"),
+                        if (widget.car.vervaldatumApkDt != null)
+                          Text(
+                              "Verval APK: ${Jiffy(widget.car.vervaldatumApkDt).format("d MMMM y")}"),
+                        Text("Soort: ${widget.car.voertuigSoort}"),
+                      ],
+                    )
+                  ],
+                ),
               ),
             );
           } else {

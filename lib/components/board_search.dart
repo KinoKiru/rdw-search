@@ -36,20 +36,20 @@ bool validateBoard(String text) {
   text = text.replaceAll('-', '').toUpperCase();
   RegExp expressionDiplomat = RegExp(r"CD[ABFJNST][0-9]{1,3}");
   List<RegExp> expressions = List.empty(growable: true);
-  expressions.add(RegExp(r"[a-zA-Z]{2}[\d]{2}[\d]{2}"));
-  expressions.add(RegExp(r"[\d]{2}[\d]{2}[a-zA-Z]{2}"));
-  expressions.add(RegExp(r"[\d]{2}[a-zA-Z]{2}[\d]{2}"));
-  expressions.add(RegExp(r"[a-zA-Z]{2}[\d]{2}[a-zA-Z]{2}"));
-  expressions.add(RegExp(r"[a-zA-Z]{2}[a-zA-Z]{2}[\d]{2}"));
-  expressions.add(RegExp(r"[\d]{2}[a-zA-Z]{2}[a-zA-Z]{2}"));
-  expressions.add(RegExp(r"[\d]{2}[a-zA-Z]{3}[\d]{1}"));
-  expressions.add(RegExp(r"[\d]{1}[a-zA-Z]{3}[\d]{2}"));
-  expressions.add(RegExp(r"[a-zA-Z]{2}[\d]{3}[a-zA-Z]{1}"));
-  expressions.add(RegExp(r"[a-zA-Z]{1}[\d]{3}[a-zA-Z]{2}"));
-  expressions.add(RegExp(r"[a-zA-Z]{3}[\d]{2}[a-zA-Z]{1}"));
-  expressions.add(RegExp(r"[a-zA-Z]{1}[\d]{2}[a-zA-Z]{3}"));
-  expressions.add(RegExp(r"[\d]{1}[a-zA-Z]{2}[\d]{3}"));
-  expressions.add(RegExp(r"[\d]{3}[a-zA-Z]{2}[\d]{1}"));
+  expressions.add(RegExp(r"[^aeiouAEIOU\d]{2}[\d]{2}[\d]{2}"));
+  expressions.add(RegExp(r"[\d]{2}[\d]{2}[^aeiouAEIOU\d]{2}"));
+  expressions.add(RegExp(r"[\d]{2}[^aeiouAEIOU\d]{2}[\d]{2}"));
+  expressions.add(RegExp(r"[^aeiouAEIOU\d]{2}[\d]{2}[^aeiouAEIOU\d]{2}"));
+  expressions.add(RegExp(r"[^aeiouAEIOU\d]{2}[^aeiouAEIOU\d]{2}[\d]{2}"));
+  expressions.add(RegExp(r"[\d]{2}[^aeiouAEIOU\d]{2}[^aeiouAEIOU\d]{2}"));
+  expressions.add(RegExp(r"[\d]{2}[^aeiouAEIOU\d]{3}[\d]{1}"));
+  expressions.add(RegExp(r"[\d]{1}[^aeiouAEIOU\d]{3}[\d]{2}"));
+  expressions.add(RegExp(r"[^aeiouAEIOU\d]{2}[\d]{3}[^aeiouAEIOU\d]{1}"));
+  expressions.add(RegExp(r"[^aeiouAEIOU\d]{1}[\d]{3}[^aeiouAEIOU\d]{2}"));
+  expressions.add(RegExp(r"[^aeiouAEIOU\d]{3}[\d]{2}[^aeiouAEIOU\d]{1}"));
+  expressions.add(RegExp(r"[^aeiouAEIOU\d]{1}[\d]{2}[^aeiouAEIOU\d]{3}"));
+  expressions.add(RegExp(r"[\d]{1}[^aeiouAEIOU\d]{2}[\d]{3}"));
+  expressions.add(RegExp(r"[\d]{3}[^aeiouAEIOU\d]{2}[\d]{1}"));
   expressions.add(RegExp(r"HELLO"));
 
   for (int i = 0; i < expressions.length; i++) {
